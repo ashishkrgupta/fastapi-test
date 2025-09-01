@@ -3,9 +3,7 @@ import plotly.graph_objects as go
 from fastapi import FastAPI
 from starlette.middleware.wsgi import WSGIMiddleware
 
-dash_app = Dash(__name__,
-            update_title="Loading...",
-            use_pages=True)
+dash_app = Dash(__name__)
 
 
 
