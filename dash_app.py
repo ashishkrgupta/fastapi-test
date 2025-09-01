@@ -1,7 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.graph_objects as go
 
-app = Dash(__name__)
+app = Dash(__name__,
+            update_title="Loading...",
+            use_pages=True,)
 
 
 app.layout = html.Div([
