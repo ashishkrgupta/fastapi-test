@@ -27,4 +27,4 @@ def display_color(color):
     return fig
 
 
-app.run(debug=True)
+app.run(debug=False)
