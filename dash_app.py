@@ -1,12 +1,15 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.graph_objects as go
+from fastapi import FastAPI
+from starlette.middleware.wsgi import WSGIMiddleware
 
-app = Dash(__name__,
+dash_app = Dash(__name__,
             update_title="Loading...",
             use_pages=True)
 
 
-app.layout = html.Div([
+
+dash_app.layout = html.Div([
     html.H4('Interactive color selection with simple Dash example'),
     html.P("Select color:"),
     dcc.Dropdown(
@@ -19,7 +22,7 @@ app.layout = html.Div([
 ])
 
 
-@app.callback(
+@dash_app.callback(
     Output("graph", "figure"),
     Input("dropdown", "value"))
 def display_color(color):
@@ -28,5 +31,6 @@ def display_color(color):
                     marker_color=color))
     return fig
 
-
+app = FastAPI()
+app.mount("/", WSGIMiddleware(dash_app.server))
 #app.run(debug=False)
